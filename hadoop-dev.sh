@@ -34,7 +34,7 @@ sudo apt-get update
 # "pseudo-distributed" Hadoop deployment.
 # In this mode, each of the hadoop components runs as a separate Java process,
 # but all on the same machine.
-sudo apt-get install -y hadoop-conf-pseudo
+sudo apt-get install -y hadoop-client
 
 # Warning: this installs spark 1.6.0, not 2.1.1
 sudo apt-get install -y spark-core spark-python
