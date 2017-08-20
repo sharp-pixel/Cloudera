@@ -28,7 +28,7 @@ case "$version" in
 "xenial")
 	# ALTERNATIVE method
 	# TODO: Debug: this results in 'SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder"' errors using HDFS...
-	#sudo add-apt-repository "deb [arch=amd64] https://archive.cloudera.com/cdh5/ubuntu/xenial/amd64/cdh xenial-cdh5.11 contrib"
+	#sudo add-apt-repository "deb [arch=amd64] https://archive.cloudera.com/cdh5/ubuntu/xenial/amd64/cdh xenial-cdh5.12 contrib"
 	wget -qO - https://archive.cloudera.com/cdh5/ubuntu/$version/amd64/cdh/archive.key | sudo apt-key add -
 	;;
 *)
@@ -43,12 +43,16 @@ sudo apt-get update
 # but all on the same machine.
 sudo apt-get install -y hadoop-conf-pseudo
 
+# Format the NameNode
 sudo -u hdfs hdfs namenode -format
 
+# Start the Hadoop services in the pseudo-distributed cluster
 for x in `cd /etc/init.d ; ls hadoop-hdfs-*` ; do sudo service $x start ; done
 
+# Create a sub-directory structure in HDFS
 sudo /usr/lib/hadoop/libexec/init-hdfs.sh
 
+# Start the YARN daemons
 sudo service hadoop-yarn-resourcemanager start
 sudo service hadoop-yarn-nodemanager start 
 sudo service hadoop-mapreduce-historyserver start

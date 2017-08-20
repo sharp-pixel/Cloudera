@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Version
-version='trusty' # `lsb_release -c -s`
+version=`lsb_release -c -s`
 
 # Written on 06/03/2017 by Cedric Pelvet
 # Tested on Ubuntu 14.04.5 (trusty)
@@ -24,7 +24,7 @@ sudo dpkg -i cdh5-repository_1.0_all.deb
 sudo chmod 644 /etc/apt/trusted.gpg.d/cloudera-cdh5.gpg # Hack
 
 # TODO: Debug: this results in 'SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder"' errors using HDFS...
-#sudo add-apt-repository "deb [arch=amd64] https://archive.cloudera.com/cdh5/ubuntu/xenial/amd64/cdh xenial-cdh5.11.1 contrib"
+#sudo add-apt-repository "deb [arch=amd64] https://archive.cloudera.com/cdh5/ubuntu/xenial/amd64/cdh xenial-cdh5.12 contrib"
 
 #wget -qO - https://archive.cloudera.com/cdh5/ubuntu/precise/amd64/cdh/archive.key | sudo apt-key add -
 wget -qO - https://archive.cloudera.com/cdh5/ubuntu/$version/amd64/cdh/archive.key | sudo apt-key add -
